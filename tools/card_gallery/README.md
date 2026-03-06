@@ -56,3 +56,17 @@ If markers are missing, the tool uses the first `CLIPTextEncode` as positive and
 - The frame is currently referenced as an SVG: `art/bureaucracy_card_frame_blank_template.svg`.
   If you later export a PNG (e.g. `art/bureaucracy_card_frame_blank_600x900.png`), you can point `design/frame_bureaucracy.json` at it.
 - Generated images are downloaded via the ComfyUI `/view` endpoint and saved into the repo.
+## House style prompts
+
+If `design/cards_bureaucracy.json` defines:
+- `house_style_positive_default`
+- `house_style_negative_default`
+- `color_accent_suffix_default`
+
+…then the generator will build prompts like:
+- **Positive** = `house_style_positive_default` + optional `"<color_accent> accent color <suffix>"` + `card.art_prompt`
+- **Negative** = `house_style_negative_default` + `card.negative_prompt` (or `negative_prompt_default`)
+
+Per-card optional fields:
+- `color_accent` (string)
+- `use_house_style` (bool, default `true`)

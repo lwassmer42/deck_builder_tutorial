@@ -20,6 +20,7 @@ import json
 import time
 import urllib.parse
 import urllib.request
+import urllib.error
 from dataclasses import dataclass
 from typing import Any
 
@@ -46,9 +47,14 @@ def _http_json(method: str, url: str, payload: dict[str, Any] | None = None, tim
     try:
         with urllib.request.urlopen(req, timeout=timeout_s) as resp:
             body = resp.read()
+    except urllib.error.HTTPError as exc:
+        err_body = exc.read()
+        snippet = err_body.decode("utf-8", errors="replace") if err_body else ""
+        if len(snippet) > 2000:
+            snippet = snippet[:2000] + "…"
+        raise ComfyUiError(f"HTTP {method} failed: {url}: {exc}. Body: {snippet}") from exc
     except Exception as exc:  # noqa: BLE001
         raise ComfyUiError(f"HTTP {method} failed: {url}: {exc}") from exc
-
     try:
         return json.loads(body.decode("utf-8"))
     except Exception as exc:  # noqa: BLE001

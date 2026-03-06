@@ -28,8 +28,13 @@
       "rules_text": "Apply 1 Exposed to ALL enemies. Gain 4 Block.",
       "art_prompt": "A stern-looking stamp and a checklist clipboard over layered paperwork, sepia ink illustration, paper grain, official vibe, no text.",
       "negative_prompt": null,
-      "variants": [],
-      "selected_seed": null,
+      "variants": [
+        {
+          "seed": 581667672,
+          "file": "art/generated/card_art/bureaucracy_audit/bureaucracy_audit_ComfyUI_00043_20260305-221926_8128bc.png"
+        }
+      ],
+      "selected_seed": 581667672,
       "approved": false,
       "notes": ""
     },
@@ -67,8 +72,45 @@
       "selected_seed": 999000001,
       "approved": false,
       "notes": ""
+    },
+    {
+      "id": "bureaucracy_form_27b6",
+      "name": "Form 27-B/6",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "cost": 1,
+      "target": "SELF",
+      "rules_text": "Draw 2. Gain 3 Block.",
+      "art_prompt": "towering stack of identical government forms, rubber stamp, desk lamp casting hard shadows",
+      "color_accent": "mustard yellow",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "variants": [
+        {
+          "seed": 1221113004,
+          "file": "art/generated/card_art/bureaucracy_form_27b6/bureaucracy_form_27b6_seed1221113004.png"
+        },
+        {
+          "seed": 612357545,
+          "file": "art/generated/card_art/bureaucracy_form_27b6/bureaucracy_form_27b6_seed612357545.png"
+        },
+        {
+          "seed": 918530031,
+          "file": "art/generated/card_art/bureaucracy_form_27b6/bureaucracy_form_27b6_seed918530031.png"
+        },
+        {
+          "seed": 1047003873,
+          "file": "art/generated/card_art/bureaucracy_form_27b6/bureaucracy_form_27b6_seed1047003873.png"
+        }
+      ],
+      "selected_seed": 1221113004,
+      "approved": false,
+      "notes": "Pipeline validation card (house style + 4 variants)."
     }
   ],
   "art_width_default": 1024,
-  "art_height_default": 688
+  "art_height_default": 688,
+  "house_style_positive_default": "1970s editorial illustration style, bold black ink outlines, limited warm color palette, cream and tan backgrounds, muted earth tones, flat cel shading, vintage comic book linework, slightly desaturated colors, retro pulp illustration, bureaucratic office setting, clean graphic composition",
+  "house_style_negative_default": "photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus",
+  "color_accent_suffix_default": "used sparingly as a graphic highlight against neutral tones"
 }

@@ -93,6 +93,7 @@ function bindEditor(card) {
     set('artFitInput', 'cover');
     set('rulesInput', '');
     set('promptInput', '');
+    set('accentInput', '');
     set('negativeInput', '');
     set('notesInput', '');
     return;
@@ -106,6 +107,7 @@ function bindEditor(card) {
   set('artFitInput', card.art_fit || 'cover');
   set('rulesInput', card.rules_text || '');
   set('promptInput', card.art_prompt || '');
+  set('accentInput', card.color_accent || '');
   set('negativeInput', card.negative_prompt || '');
   set('notesInput', card.notes || '');
 
@@ -118,6 +120,7 @@ function bindEditor(card) {
     card.art_fit = el('artFitInput').value;
     card.rules_text = el('rulesInput').value;
     card.art_prompt = el('promptInput').value;
+    card.color_accent = el('accentInput').value;
     card.negative_prompt = el('negativeInput').value.trim() ? el('negativeInput').value : null;
     card.notes = el('notesInput').value;
     el('approveBtn').textContent = card.approved ? 'Unapprove' : 'Approve';
@@ -126,7 +129,7 @@ function bindEditor(card) {
     renderPreview().catch(e => setStatus("Render failed: " + e.message));
   };
 
-  for (const id of ['nameInput','costInput','typeInput','rarityInput','targetInput','artFitInput','rulesInput','promptInput','negativeInput','notesInput']) {
+  for (const id of ['nameInput','costInput','typeInput','rarityInput','targetInput','artFitInput','rulesInput','promptInput','accentInput','negativeInput','notesInput']) {
     el(id).oninput = onChange;
     el(id).onchange = onChange;
   }

@@ -364,6 +364,42 @@ class Handler(BaseHTTPRequestHandler):
         if not isinstance(negative, str):
             negative = None
 
+        # Optional "house style" prompt wrapper (see tools/comfyui/workflows/prompt-builder.jsx)
+        use_house_style = card.get("use_house_style")
+        if not isinstance(use_house_style, bool):
+            use_house_style = True
+
+        house_pos = cards_doc.get("house_style_positive_default")
+        if not isinstance(house_pos, str):
+            house_pos = ""
+
+        house_neg = cards_doc.get("house_style_negative_default")
+        if not isinstance(house_neg, str):
+            house_neg = ""
+
+        color_suffix = cards_doc.get("color_accent_suffix_default")
+        if not isinstance(color_suffix, str) or not color_suffix.strip():
+            color_suffix = "used sparingly as a graphic highlight against neutral tones"
+
+        color_accent = card.get("color_accent")
+        if not isinstance(color_accent, str):
+            color_accent = ""
+
+        positive_parts: list[str] = []
+        if use_house_style and house_pos.strip():
+            positive_parts.append(house_pos.strip())
+        if use_house_style and color_accent.strip():
+            positive_parts.append(f"{color_accent.strip()} accent color {color_suffix.strip()}")
+        positive_parts.append(prompt.strip())
+        positive_prompt = ", ".join([p.strip().strip(",") for p in positive_parts if p and p.strip()])
+
+        negative_parts: list[str] = []
+        if use_house_style and house_neg.strip():
+            negative_parts.append(house_neg.strip())
+        if isinstance(negative, str) and negative.strip():
+            negative_parts.append(negative.strip())
+        negative_prompt = ", ".join([p.strip().strip(",") for p in negative_parts if p and p.strip()]) or None
+
 
         # Resolve output size (lets you use SDXL recommended dims like 1216x832)
         art_width = card.get("art_width")
@@ -400,8 +436,8 @@ class Handler(BaseHTTPRequestHandler):
             filename_prefix = f"card_art/{card_id}/{card_id}_seed{seed}"
             injected = inject_into_workflow(
                 workflow,
-                positive_prompt=prompt,
-                negative_prompt=negative,
+                positive_prompt=positive_prompt,
+                negative_prompt=negative_prompt,
                 seed=seed,
                 width=art_width,
                 height=art_height,
