@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const HOUSE_STYLE_POSITIVE = `1970s comic book illustration, retro pulp print look, bold black ink outlines, clean confident linework, flat cel shading, subtle halftone / newsprint texture, limited warm palette (cream, tan, muted earth tones) with slightly richer midtones, clear value contrast and hard-edged shadows, simple graphic composition, no readable text`;
 
-const HOUSE_STYLE_NEGATIVE = `photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus`;
+const HOUSE_STYLE_NEGATIVE = `photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box`;
 
 const COLOR_ACCENT_SUFFIX = `used sparingly on small props as a graphic highlight (not as a full background wash)`;
 
