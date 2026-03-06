@@ -70,3 +70,7 @@ If `design/cards_bureaucracy.json` defines:
 Per-card optional fields:
 - `color_accent` (string)
 - `use_house_style` (bool, default `true`)
+
+## Art direction
+
+See design/BUREAUCRACY_ART_DIRECTION.md for tone + subject/scene guidance (humorous bureaucracy, expressive faces, varied locations).
