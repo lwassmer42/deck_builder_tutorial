@@ -57,3 +57,11 @@ Use this as the fixed “house style” prefix. Keep *specific subjects/location
 **Negative base**
 - `photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, readable text, watermark, logo`
 
+
+## People Ratio (60/40)
+Aim for **~60% of cards with no people** in the artwork (object/scenery focused), and **~40% with people**.
+
+Reason: SDXL Lightning tends to fumble hands/faces more often; we get better consistency by leaning on props, environments, and absurd object gags.
+
+Pipeline note:
+- Use `contains_people = false` on cards that should avoid humans (the generator adds extra “no people” negatives).

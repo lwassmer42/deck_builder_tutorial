@@ -433,6 +433,15 @@ class Handler(BaseHTTPRequestHandler):
             negative_parts.append(negative.strip())
         negative_prompt = ", ".join([p.strip().strip(",") for p in negative_parts if p and p.strip()]) or None
 
+        contains_people = card.get("contains_people")
+        if not isinstance(contains_people, bool):
+            contains_people = None
+
+        if contains_people is False:
+            no_people_suffix = cards_doc.get("no_people_negative_suffix_default")
+            if isinstance(no_people_suffix, str) and no_people_suffix.strip():
+                negative_prompt = ", ".join([p.strip().strip(",") for p in [negative_prompt, no_people_suffix] if isinstance(p, str) and p.strip()]) or None
+
 
         # Resolve output size (lets you use SDXL recommended dims like 1216x832)
         art_width = card.get("art_width")
