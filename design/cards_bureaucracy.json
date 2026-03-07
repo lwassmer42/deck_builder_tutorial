@@ -798,6 +798,211 @@
       "selected_seed": 565735559,
       "approved": false,
       "notes": ""
+    },
+    {
+      "id": "bureaucracy_reply_all",
+      "name": "Reply All",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "cost": 1,
+      "target": "ALL_ENEMIES",
+      "rules_text": "Deal 4 damage to ALL enemies. Draw 1.",
+      "art_prompt": "office worker at a desk horrified as identical ringing telephones and paper messages multiply around them, coworkers turning their heads, chaotic office, medium shot, comedic panic",
+      "color_accent": "muted red",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": true,
+      "variants": [
+        {
+          "seed": 1791769039,
+          "file": "art/generated/card_art/bureaucracy_reply_all/bureaucracy_reply_all_seed1791769039.png",
+          "source": "comfyui",
+          "prompt_id": "2f6929c4-3221-4051-8887-a76eabf396e4",
+          "positive_prompt": "1970s comic book illustration, retro pulp print look, bold black ink outlines, clean confident linework, flat cel shading, subtle halftone / newsprint texture, limited warm palette (cream, tan, muted earth tones) with slightly richer midtones, clear value contrast and hard-edged shadows, simple graphic composition, no readable text, muted red accent color used sparingly on small props as a graphic highlight (not as a full background wash), office worker at a desk horrified as identical ringing telephones and paper messages multiply around them, coworkers turning their heads, chaotic office, medium shot, comedic panic",
+          "negative_prompt": "photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-07 08:13:13"
+        },
+        {
+          "seed": 901950770,
+          "file": "art/generated/card_art/bureaucracy_reply_all/bureaucracy_reply_all_seed901950770.png",
+          "source": "comfyui",
+          "prompt_id": "f2f33ce2-fe3d-4597-be65-52da28420236",
+          "positive_prompt": "1970s comic book illustration, retro pulp print look, bold black ink outlines, clean confident linework, flat cel shading, subtle halftone / newsprint texture, limited warm palette (cream, tan, muted earth tones) with slightly richer midtones, clear value contrast and hard-edged shadows, simple graphic composition, no readable text, muted red accent color used sparingly on small props as a graphic highlight (not as a full background wash), office worker at a desk horrified as identical ringing telephones and paper messages multiply around them, coworkers turning their heads, chaotic office, medium shot, comedic panic",
+          "negative_prompt": "photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-07 08:26:19"
+        }
+      ],
+      "selected_seed": 1791769039,
+      "approved": false,
+      "notes": "New overnight review batch."
+    },
+    {
+      "id": "bureaucracy_missing_attachment",
+      "name": "Missing Attachment",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "cost": 0,
+      "target": "SELF",
+      "rules_text": "Draw 2. Discard 1.",
+      "art_prompt": "open interoffice envelope with nothing inside except a paperclip and dust, desk lamp shadows, empty inbox tray, close-up, absurdly serious composition",
+      "color_accent": "mustard yellow",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": false,
+      "variants": [
+        {
+          "seed": 1734038638,
+          "file": "art/generated/card_art/bureaucracy_missing_attachment/bureaucracy_missing_attachment_seed1734038638.png",
+          "source": "comfyui",
+          "prompt_id": "6bee6da6-9c3f-47ed-8c84-c4af27d350b1",
+          "positive_prompt": "1970s comic book illustration, retro pulp print look, bold black ink outlines, clean confident linework, flat cel shading, subtle halftone / newsprint texture, limited warm palette (cream, tan, muted earth tones) with slightly richer midtones, clear value contrast and hard-edged shadows, simple graphic composition, no readable text, mustard yellow accent color used sparingly on small props as a graphic highlight (not as a full background wash), open interoffice envelope with nothing inside except a paperclip and dust, desk lamp shadows, empty inbox tray, close-up, absurdly serious composition",
+          "negative_prompt": "photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts, people, person, human, face, faces, crowd, full body, portrait",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-07 08:15:45"
+        },
+        {
+          "seed": 794977250,
+          "file": "art/generated/card_art/bureaucracy_missing_attachment/bureaucracy_missing_attachment_seed794977250.png",
+          "source": "comfyui",
+          "prompt_id": "eeb24715-3d57-4526-95e2-a1ee0699040a",
+          "positive_prompt": "1970s comic book illustration, retro pulp print look, bold black ink outlines, clean confident linework, flat cel shading, subtle halftone / newsprint texture, limited warm palette (cream, tan, muted earth tones) with slightly richer midtones, clear value contrast and hard-edged shadows, simple graphic composition, no readable text, mustard yellow accent color used sparingly on small props as a graphic highlight (not as a full background wash), open interoffice envelope with nothing inside except a paperclip and dust, desk lamp shadows, empty inbox tray, close-up, absurdly serious composition",
+          "negative_prompt": "photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts, people, person, human, face, faces, crowd, full body, portrait",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-07 08:28:48"
+        }
+      ],
+      "selected_seed": 1734038638,
+      "approved": false,
+      "notes": "New overnight review batch."
+    },
+    {
+      "id": "bureaucracy_conference_call",
+      "name": "Conference Call",
+      "type": "POWER",
+      "rarity": "UNCOMMON",
+      "cost": 2,
+      "target": "SELF",
+      "rules_text": "At the start of your turn, gain 1 Block and draw 1.",
+      "art_prompt": "conference table with one exhausted manager speaking into a speakerphone while identical hands keep sliding forms into frame, boardroom, overhead fluorescent light, medium wide shot, darkly funny",
+      "color_accent": "olive green",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": true,
+      "variants": [
+        {
+          "seed": 885555122,
+          "file": "art/generated/card_art/bureaucracy_conference_call/bureaucracy_conference_call_seed885555122.png",
+          "source": "comfyui",
+          "prompt_id": "f2b4999b-ad4f-45e9-bff1-8c1944ade42b",
+          "positive_prompt": "1970s comic book illustration, retro pulp print look, bold black ink outlines, clean confident linework, flat cel shading, subtle halftone / newsprint texture, limited warm palette (cream, tan, muted earth tones) with slightly richer midtones, clear value contrast and hard-edged shadows, simple graphic composition, no readable text, olive green accent color used sparingly on small props as a graphic highlight (not as a full background wash), conference table with one exhausted manager speaking into a speakerphone while identical hands keep sliding forms into frame, boardroom, overhead fluorescent light, medium wide shot, darkly funny",
+          "negative_prompt": "photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-07 08:18:13"
+        },
+        {
+          "seed": 979731923,
+          "file": "art/generated/card_art/bureaucracy_conference_call/bureaucracy_conference_call_seed979731923.png",
+          "source": "comfyui",
+          "prompt_id": "194f8c99-7c29-4a20-a7c2-73c3d0ae816b",
+          "positive_prompt": "1970s comic book illustration, retro pulp print look, bold black ink outlines, clean confident linework, flat cel shading, subtle halftone / newsprint texture, limited warm palette (cream, tan, muted earth tones) with slightly richer midtones, clear value contrast and hard-edged shadows, simple graphic composition, no readable text, olive green accent color used sparingly on small props as a graphic highlight (not as a full background wash), conference table with one exhausted manager speaking into a speakerphone while identical hands keep sliding forms into frame, boardroom, overhead fluorescent light, medium wide shot, darkly funny",
+          "negative_prompt": "photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-07 08:31:29"
+        }
+      ],
+      "selected_seed": 885555122,
+      "approved": false,
+      "notes": "New overnight review batch."
+    },
+    {
+      "id": "bureaucracy_break_room_coup",
+      "name": "Break Room Coup",
+      "type": "ATTACK",
+      "rarity": "RARE",
+      "cost": 2,
+      "target": "SINGLE_ENEMY",
+      "rules_text": "Deal 9 damage. Apply 1 Exposed.",
+      "art_prompt": "break room confrontation, employee fake-smiling while tightening grip on a chipped coffee mug, supervisor frozen mid-sip, microwave and vending machine in background, tense comedic energy, medium shot",
+      "color_accent": "burnt orange",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": true,
+      "variants": [
+        {
+          "seed": 393377739,
+          "file": "art/generated/card_art/bureaucracy_break_room_coup/bureaucracy_break_room_coup_seed393377739.png",
+          "source": "comfyui",
+          "prompt_id": "3af84ad8-2a2d-4273-89e0-1b3179e5dbdb",
+          "positive_prompt": "1970s comic book illustration, retro pulp print look, bold black ink outlines, clean confident linework, flat cel shading, subtle halftone / newsprint texture, limited warm palette (cream, tan, muted earth tones) with slightly richer midtones, clear value contrast and hard-edged shadows, simple graphic composition, no readable text, burnt orange accent color used sparingly on small props as a graphic highlight (not as a full background wash), break room confrontation, employee fake-smiling while tightening grip on a chipped coffee mug, supervisor frozen mid-sip, microwave and vending machine in background, tense comedic energy, medium shot",
+          "negative_prompt": "photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-07 08:20:38"
+        },
+        {
+          "seed": 1851701661,
+          "file": "art/generated/card_art/bureaucracy_break_room_coup/bureaucracy_break_room_coup_seed1851701661.png",
+          "source": "comfyui",
+          "prompt_id": "4f10874b-5df2-437c-a7fc-3b3105533027",
+          "positive_prompt": "1970s comic book illustration, retro pulp print look, bold black ink outlines, clean confident linework, flat cel shading, subtle halftone / newsprint texture, limited warm palette (cream, tan, muted earth tones) with slightly richer midtones, clear value contrast and hard-edged shadows, simple graphic composition, no readable text, burnt orange accent color used sparingly on small props as a graphic highlight (not as a full background wash), break room confrontation, employee fake-smiling while tightening grip on a chipped coffee mug, supervisor frozen mid-sip, microwave and vending machine in background, tense comedic energy, medium shot",
+          "negative_prompt": "photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-07 08:33:53"
+        }
+      ],
+      "selected_seed": 393377739,
+      "approved": false,
+      "notes": "New overnight review batch."
+    },
+    {
+      "id": "bureaucracy_lost_in_routing",
+      "name": "Lost in Routing",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "cost": 1,
+      "target": "SELF",
+      "rules_text": "Gain 7 Block. Exhaust.",
+      "art_prompt": "maze of rolling filing cabinets and directional arrows leading nowhere, one folder pinned at a dead end, government hallway, hard shadows, graphic composition",
+      "color_accent": "muted teal",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": false,
+      "variants": [
+        {
+          "seed": 1943978717,
+          "file": "art/generated/card_art/bureaucracy_lost_in_routing/bureaucracy_lost_in_routing_seed1943978717.png",
+          "source": "comfyui",
+          "prompt_id": "7c8a8082-59d9-4b28-8d09-f5051d1cb15b",
+          "positive_prompt": "1970s comic book illustration, retro pulp print look, bold black ink outlines, clean confident linework, flat cel shading, subtle halftone / newsprint texture, limited warm palette (cream, tan, muted earth tones) with slightly richer midtones, clear value contrast and hard-edged shadows, simple graphic composition, no readable text, muted teal accent color used sparingly on small props as a graphic highlight (not as a full background wash), maze of rolling filing cabinets and directional arrows leading nowhere, one folder pinned at a dead end, government hallway, hard shadows, graphic composition",
+          "negative_prompt": "photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts, people, person, human, face, faces, crowd, full body, portrait",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-07 08:23:10"
+        },
+        {
+          "seed": 1100660729,
+          "file": "art/generated/card_art/bureaucracy_lost_in_routing/bureaucracy_lost_in_routing_seed1100660729.png",
+          "source": "comfyui",
+          "prompt_id": "dbf2bd39-5afa-4048-9fed-f05fc96da6bb",
+          "positive_prompt": "1970s comic book illustration, retro pulp print look, bold black ink outlines, clean confident linework, flat cel shading, subtle halftone / newsprint texture, limited warm palette (cream, tan, muted earth tones) with slightly richer midtones, clear value contrast and hard-edged shadows, simple graphic composition, no readable text, muted teal accent color used sparingly on small props as a graphic highlight (not as a full background wash), maze of rolling filing cabinets and directional arrows leading nowhere, one folder pinned at a dead end, government hallway, hard shadows, graphic composition",
+          "negative_prompt": "photorealistic, 3d render, soft gradients, painterly, watercolor, neon colors, modern digital art, anime, manga, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts, people, person, human, face, faces, crowd, full body, portrait",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-07 08:36:17"
+        }
+      ],
+      "selected_seed": 1943978717,
+      "approved": false,
+      "notes": "New overnight review batch."
     }
   ],
   "art_width_default": 1024,
