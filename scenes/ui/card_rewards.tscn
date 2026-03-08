@@ -24,18 +24,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -41.5
-offset_top = -20.0
-offset_right = 41.5
-offset_bottom = 20.0
+offset_left = -260.0
+offset_top = -150.0
+offset_right = 260.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 28
 
 [node name="Cards" type="HBoxContainer" parent="VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 28
 
 [node name="CardMenuUI" parent="VBoxContainer/Cards" instance=ExtResource("1_spfg3")]
 layout_mode = 2
@@ -48,9 +48,10 @@ layout_mode = 2
 
 [node name="SkipCardReward" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 14)
+custom_minimum_size = Vector2(240, 60)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
 text = "Skip"
 
 [node name="CardTooltipPopup" parent="." instance=ExtResource("2_738we")]
@@ -66,10 +67,12 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -25.0
-offset_top = -28.0
-offset_right = 25.0
-offset_bottom = -14.0
+custom_minimum_size = Vector2(240, 60)
+offset_left = -120.0
+offset_top = -92.0
+offset_right = 120.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_font_sizes/font_size = 24
 text = "Take"

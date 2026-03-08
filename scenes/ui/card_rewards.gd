@@ -59,6 +59,10 @@ func set_rewards(new_cards: Array[Card]) -> void:
 	_clear_rewards()
 	for card: Card in rewards:
 		var new_card := CARD_MENU_UI.instantiate() as CardMenuUI
+		new_card.custom_minimum_size = Vector2(72, 86)
+		var visuals := new_card.get_node("Visuals") as Control
+		if visuals:
+			visuals.scale = Vector2(2.8, 2.8)
 		cards.add_child(new_card)
 		new_card.card = card
 		new_card.tooltip_requested.connect(_show_tooltip)
