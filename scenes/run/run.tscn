@@ -86,33 +86,29 @@ alignment = 1
 
 [node name="HealthUI" parent="TopBar/BarItems" instance=ExtResource("4_k05q4")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(180, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-scale = Vector2(4.5, 4.5)
 show_max_hp = true
 
 [node name="GoldUI" parent="TopBar/BarItems" instance=ExtResource("4_dtarl")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(132, 0)
 layout_mode = 2
-scale = Vector2(4.5, 4.5)
 
 [node name="BudgetUI" parent="TopBar/BarItems" instance=ExtResource("4_xbgt1")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(132, 0)
 layout_mode = 2
-scale = Vector2(4.5, 4.5)
 
 [node name="RelicHandlerContainer" type="CenterContainer" parent="TopBar/BarItems"]
-custom_minimum_size = Vector2(560, 0)
+custom_minimum_size = Vector2(720, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="RelicHandler" parent="TopBar/BarItems/RelicHandlerContainer" instance=ExtResource("6_f8fbw")]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
-scale = Vector2(3, 3)
 
 [node name="DeckButton" parent="TopBar/BarItems" node_paths=PackedStringArray("counter") instance=ExtResource("4_ayx7e")]
 unique_name_in_owner = true
