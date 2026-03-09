@@ -17,6 +17,7 @@ var mana: int : set = set_mana
 var deck: CardPile
 var discard: CardPile
 var draw_pile: CardPile
+@export var backlog: CardPile
 
 
 func set_mana(value: int) -> void:
@@ -39,6 +40,17 @@ func can_play_card(card: Card) -> bool:
 	return mana >= card.cost
 
 
+func ensure_runtime_piles() -> void:
+	if deck == null:
+		deck = starting_deck.duplicate()
+	if draw_pile == null:
+		draw_pile = CardPile.new()
+	if discard == null:
+		discard = CardPile.new()
+	if backlog == null:
+		backlog = CardPile.new()
+
+
 func create_instance() -> Resource:
 	var instance: CharacterStats = self.duplicate()
 	instance.health = max_health
@@ -47,4 +59,5 @@ func create_instance() -> Resource:
 	instance.deck = instance.starting_deck.duplicate()
 	instance.draw_pile = CardPile.new()
 	instance.discard = CardPile.new()
+	instance.backlog = CardPile.new()
 	return instance

@@ -29,6 +29,8 @@ const RARITY_COLORS := {
 @export var exposed_to_apply := 0
 @export var budget_cost := 0
 @export var budget_gain := 0
+@export var draw_from_backlog := 0
+@export var file_to_backlog := false
 
 @export_group("Chain")
 @export var chain_id := ""
@@ -105,6 +107,8 @@ func play(targets: Array[Node], char_stats: CharacterStats, modifiers: ModifierH
 	apply_effects(resolved_targets, modifiers)
 	if chain_bonus_active:
 		_apply_chain_bonus_effects(resolved_targets, modifiers)
+	if draw_from_backlog > 0:
+		_draw_cards_from_backlog(draw_from_backlog)
 
 	if budget_gain > 0 and run_stats != null:
 		run_stats.gain_budget(budget_gain)
@@ -143,6 +147,21 @@ func _apply_effect_bundle(targets: Array[Node], modifiers: ModifierHandler, dama
 		exposed.duration = exposed_value
 		status_effect.status = exposed
 		status_effect.execute(targets)
+
+
+func _draw_cards_from_backlog(amount: int) -> void:
+	if amount <= 0:
+		return
+
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null:
+		return
+
+	var player_handler := tree.get_first_node_in_group("player_handler") as PlayerHandler
+	if player_handler == null:
+		return
+
+	player_handler.draw_cards_from_backlog(amount)
 
 
 func get_default_tooltip() -> String:

@@ -5,9 +5,11 @@
 [ext_resource type="Script" path="res://enemies/bat/bat_block_action.gd" id="3_lasj1"]
 [ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://art/tile_0103.png" id="3_snynw"]
 [ext_resource type="Script" path="res://custom_resources/intent.gd" id="4_a486a"]
+[ext_resource type="Script" path="res://enemies/common/bury_in_paperwork_action.gd" id="4_backlog"]
 [ext_resource type="AudioStream" uid="uid://de2ryat1pxq6" path="res://art/enemy_attack.ogg" id="5_r8rjx"]
 [ext_resource type="Texture2D" uid="uid://bi6pfjs32f820" path="res://art/tile_0101.png" id="7_2im00"]
 [ext_resource type="AudioStream" uid="uid://k8m4o3hlwm7l" path="res://art/enemy_block.ogg" id="8_8hq17"]
+[ext_resource type="Texture2D" uid="uid://c7c8cgkuro8b3" path="res://art/discard.png" id="9_backlog_icon"]
 
 [sub_resource type="Resource" id="Resource_5y0u8"]
 script = ExtResource("4_a486a")
@@ -18,6 +20,11 @@ icon = ExtResource("3_snynw")
 script = ExtResource("4_a486a")
 base_text = "4"
 icon = ExtResource("7_2im00")
+
+[sub_resource type="Resource" id="Resource_backlog"]
+script = ExtResource("4_a486a")
+base_text = "%s"
+icon = ExtResource("9_backlog_icon")
 
 [node name="BatEnemyAI" type="Node"]
 script = ExtResource("1_ideu7")
@@ -35,3 +42,11 @@ intent = SubResource("Resource_1xroc")
 sound = ExtResource("8_8hq17")
 type = 1
 chance_weight = 1.0
+
+[node name="BuryInPaperworkAction" type="Node" parent="."]
+script = ExtResource("4_backlog")
+intent = SubResource("Resource_backlog")
+sound = ExtResource("8_8hq17")
+type = 1
+chance_weight = 0.45
+notices_to_add = 1

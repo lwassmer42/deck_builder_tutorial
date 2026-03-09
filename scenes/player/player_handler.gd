@@ -11,6 +11,8 @@ extends Node
 
 const HAND_DRAW_INTERVAL := 0.25
 const HAND_DISCARD_INTERVAL := 0.25
+const BACKLOG_DRAW_COST := 3
+const MISFILED_NOTICE := preload("res://common_cards/debuffs/bureaucracy_misfiled_notice.tres")
 
 @export var relics: RelicHandler
 @export var player: Player
@@ -25,6 +27,7 @@ func _ready() -> void:
 
 func start_battle(char_stats: CharacterStats) -> void:
 	character = char_stats
+	character.ensure_runtime_piles()
 	character.draw_pile = character.deck.custom_duplicate()
 	character.draw_pile.shuffle()
 	character.discard = CardPile.new()
@@ -46,6 +49,8 @@ func end_turn() -> void:
 
 func draw_card() -> void:
 	reshuffle_deck_from_discard()
+	if character.draw_pile.empty():
+		return
 	hand.add_card(character.draw_pile.draw_card())
 	reshuffle_deck_from_discard()
 
@@ -91,7 +96,66 @@ func reshuffle_deck_from_discard() -> void:
 	character.draw_pile.shuffle()
 
 
+func can_draw_from_backlog() -> bool:
+	return (
+		character != null
+		and character.backlog != null
+		and not character.backlog.empty()
+		and character.mana >= BACKLOG_DRAW_COST
+	)
+
+
+func draw_from_backlog() -> bool:
+	if not can_draw_from_backlog():
+		return false
+
+	character.mana -= BACKLOG_DRAW_COST
+	draw_cards_from_backlog(1)
+	return true
+
+
+func draw_cards_from_backlog(amount: int) -> int:
+	if character == null or character.backlog == null or amount <= 0:
+		return 0
+
+	var drawn := 0
+	while drawn < amount and not character.backlog.empty():
+		var card := character.backlog.draw_card()
+		if card == null:
+			break
+		hand.add_card(card)
+		drawn += 1
+
+	if drawn > 0:
+		hand.enable_hand()
+
+	return drawn
+
+
+func add_card_to_backlog(card: Card) -> bool:
+	if character == null or card == null:
+		return false
+
+	character.ensure_runtime_piles()
+	character.backlog.add_card(card)
+	return true
+
+
+func add_misfiled_notice_to_backlog(amount: int = 1) -> bool:
+	if amount <= 0:
+		return false
+
+	var added := false
+	for _i in range(amount):
+		added = add_card_to_backlog(MISFILED_NOTICE.create_instance_copy()) or added
+	return added
+
+
 func _on_card_played(card: Card) -> void:
+	if card.file_to_backlog:
+		add_card_to_backlog(card)
+		return
+
 	if card.exhausts or card.type == Card.Type.POWER:
 		return
 	

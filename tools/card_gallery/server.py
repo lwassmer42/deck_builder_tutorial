@@ -193,6 +193,26 @@ class Handler(BaseHTTPRequestHandler):
 
             return self._send_json(HTTPStatus.OK, updated)
 
+        if self.path == "/api/unpromote":
+            try:
+                body = self._read_json_body()
+            except ValueError as e:
+                return self._send_json(HTTPStatus.BAD_REQUEST, {"error": str(e)})
+
+            card_id = body.get("card_id")
+            if not isinstance(card_id, str) or not card_id:
+                return self._send_json(HTTPStatus.BAD_REQUEST, {"error": "card_id is required"})
+
+            try:
+                updated = self._unpromote_card(card_id=card_id)
+            except ValueError as e:
+                return self._send_json(HTTPStatus.BAD_REQUEST, {"error": str(e)})
+            except Exception as e:  # noqa: BLE001
+                return self._send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": f"Unexpected error: {e}"})
+
+            return self._send_json(HTTPStatus.OK, updated)
+
+
         if self.path == "/api/upload_art":
             try:
                 updated = self._upload_art()
@@ -557,24 +577,31 @@ class Handler(BaseHTTPRequestHandler):
 
 
     def _promote_card(self, *, card_id: str) -> dict[str, Any]:
-        """Create a Godot Card resource + icon for the selected variant.
-
-        Outputs (tracked):
-        - art/promoted/card_icons/<card_id>.png
-        - common_cards/promoted/<card_id>.tres
-
-        Also marks the card entry in design/cards_bureaucracy.json with the output paths.
-        """
+        """Create a Godot Card resource + icon for the selected variant."""
 
         def esc(s: str) -> str:
-            # Godot .tres string literal escaping.
             return (
                 s.replace("\\", "\\\\")
-                .replace("\"", "\\\"")
+                .replace('"', '\\"')
                 .replace("\r\n", "\\n")
                 .replace("\n", "\\n")
                 .replace("\r", "\\n")
             )
+
+        def as_int(value: Any, default: int = 0) -> int:
+            try:
+                return int(value)
+            except Exception:
+                return default
+
+        def as_bool(value: Any, default: bool = False) -> bool:
+            if isinstance(value, bool):
+                return value
+            if value is None:
+                return default
+            if isinstance(value, str):
+                return value.strip().lower() in {"1", "true", "yes", "on"}
+            return bool(value)
 
         with _write_lock:
             cards_doc = _json_read(CARDS_PATH)
@@ -608,7 +635,6 @@ class Handler(BaseHTTPRequestHandler):
             if not src_path.exists():
                 raise ValueError(f"Variant image missing on disk: {src_rel}")
 
-            # Output paths (tracked)
             icon_rel = f"art/promoted/card_icons/{card_id}.png"
             icon_path = (REPO_ROOT / icon_rel).resolve()
             icon_path.parent.mkdir(parents=True, exist_ok=True)
@@ -633,12 +659,7 @@ class Handler(BaseHTTPRequestHandler):
             if target_str not in target_map:
                 raise ValueError(f"Unknown target: {target_str}")
 
-            cost = card.get("cost")
-            if not isinstance(cost, int):
-                try:
-                    cost = int(cost)
-                except Exception:
-                    cost = 1
+            cost = as_int(card.get("cost"), 1)
 
             sound_by_type = {
                 "ATTACK": "res://art/slash.ogg",
@@ -651,29 +672,56 @@ class Handler(BaseHTTPRequestHandler):
             rules = str(card.get("rules_text") or "")
             tooltip = f"[center][b]{name}[/b]\\n{rules}[/center]"
 
-            tres = "".join(
-                [
-                    '[gd_resource type="Resource" script_class="Card" load_steps=4 format=3]\n\n',
-                    f'[ext_resource type="Texture2D" path="res://{icon_rel}" id="1_icon"]\n',
-                    '[ext_resource type="Script" path="res://custom_resources/card.gd" id="2_script"]\n',
-                    f'[ext_resource type="AudioStream" path="{sound_path}" id="3_sound"]\n\n',
-                    '[resource]\n',
-                    'script = ExtResource("2_script")\n',
-                    f'id = "{esc(card_id)}"\n',
-                    f'type = {type_map[type_str]}\n',
-                    f'rarity = {rarity_map[rarity_str]}\n',
-                    f'target = {target_map[target_str]}\n',
-                    f'cost = {cost}\n',
-                    'exhausts = false\n',
-                    'icon = ExtResource("1_icon")\n',
-                    f'tooltip_text = "{esc(tooltip)}"\n',
-                    'sound = ExtResource("3_sound")\n',
-                ]
-            )
+            gameplay_ints = {
+                "damage": as_int(card.get("damage"), 0),
+                "block_amount": as_int(card.get("block_amount"), 0),
+                "cards_to_draw": as_int(card.get("cards_to_draw"), 0),
+                "exposed_to_apply": as_int(card.get("exposed_to_apply"), 0),
+                "budget_cost": as_int(card.get("budget_cost"), 0),
+                "budget_gain": as_int(card.get("budget_gain"), 0),
+                "draw_from_backlog": as_int(card.get("draw_from_backlog"), 0),
+                "chain_bonus_damage": as_int(card.get("chain_bonus_damage"), 0),
+                "chain_bonus_block": as_int(card.get("chain_bonus_block"), 0),
+                "chain_bonus_cards_to_draw": as_int(card.get("chain_bonus_cards_to_draw"), 0),
+                "chain_bonus_exposed_to_apply": as_int(card.get("chain_bonus_exposed_to_apply"), 0),
+            }
+            chain_id = str(card.get("chain_id") or "")
+            chain_step = as_int(card.get("chain_step"), 0)
+            chain_window_turns = as_int(card.get("chain_window_turns"), 1)
+            exhausts = as_bool(card.get("exhausts"), False)
+            file_to_backlog = as_bool(card.get("file_to_backlog"), False)
 
-            card_path.write_text(tres, encoding="utf-8", newline="\n")
+            lines = [
+                '[gd_resource type="Resource" script_class="Card" load_steps=4 format=3]\n\n',
+                f'[ext_resource type="Texture2D" path="res://{icon_rel}" id="1_icon"]\n',
+                '[ext_resource type="Script" path="res://custom_resources/card.gd" id="2_script"]\n',
+                f'[ext_resource type="AudioStream" path="{sound_path}" id="3_sound"]\n\n',
+                '[resource]\n',
+                'script = ExtResource("2_script")\n',
+                f'id = "{esc(card_id)}"\n',
+                f'type = {type_map[type_str]}\n',
+                f'rarity = {rarity_map[rarity_str]}\n',
+                f'target = {target_map[target_str]}\n',
+                f'cost = {cost}\n',
+            ]
 
-            # Mark in design JSON
+            for key, value in gameplay_ints.items():
+                if value != 0:
+                    lines.append(f'{key} = {value}\n')
+            if chain_id:
+                lines.append(f'chain_id = "{esc(chain_id)}"\n')
+            lines.append(f'exhausts = {str(exhausts).lower()}\n')
+            if file_to_backlog:
+                lines.append('file_to_backlog = true\n')
+
+            lines.extend([
+                'icon = ExtResource("1_icon")\n',
+                f'tooltip_text = "{esc(tooltip)}"\n',
+                'sound = ExtResource("3_sound")\n',
+            ])
+
+            card_path.write_text("".join(lines), encoding="utf-8", newline="\n")
+
             card["promoted"] = True
             card["godot_card_path"] = card_rel.replace("\\", "/")
             card["godot_icon_path"] = icon_rel.replace("\\", "/")
@@ -684,6 +732,40 @@ class Handler(BaseHTTPRequestHandler):
             _json_write(CARDS_PATH, cards_doc)
 
         return cards_doc
+
+    def _unpromote_card(self, *, card_id: str) -> dict[str, Any]:
+        with _write_lock:
+            cards_doc = _json_read(CARDS_PATH)
+
+            cards = cards_doc.get("cards")
+            if not isinstance(cards, list):
+                raise ValueError("design/cards_bureaucracy.json missing cards[]")
+
+            card = next((c for c in cards if isinstance(c, dict) and c.get("id") == card_id), None)
+            if not isinstance(card, dict):
+                raise ValueError(f"Card not found: {card_id}")
+
+            for key in ("godot_card_path", "godot_icon_path"):
+                rel_path = card.get(key)
+                if not isinstance(rel_path, str) or not rel_path:
+                    continue
+                abs_path = (REPO_ROOT / rel_path).resolve()
+                try:
+                    abs_path.relative_to(REPO_ROOT)
+                except Exception:
+                    continue
+                if abs_path.exists():
+                    abs_path.unlink()
+
+            card["promoted"] = False
+            for key in ("godot_card_path", "godot_icon_path", "promoted_seed", "promoted_at"):
+                card.pop(key, None)
+
+            _backup_cards()
+            _json_write(CARDS_PATH, cards_doc)
+
+        return cards_doc
+
 def main() -> None:
     mimetypes.add_type("image/svg+xml", ".svg")
 

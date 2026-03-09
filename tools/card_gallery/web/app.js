@@ -90,6 +90,7 @@ function bindEditor(card) {
   el('approveBtn').textContent = card?.approved ? 'Unapprove' : 'Approve';
   el('promoteBtn').textContent = card?.promoted ? 'Re-promote' : 'Promote';
   el('promoteBtn').disabled = !card || !card.selected_seed;
+  el('unpromoteBtn').disabled = !card || !card.promoted;
 
   const set = (id, val) => { el(id).value = (val ?? ''); };
 
@@ -140,6 +141,7 @@ function bindEditor(card) {
     el('approveBtn').textContent = card.approved ? 'Unapprove' : 'Approve';
     el('promoteBtn').textContent = card.promoted ? 'Re-promote' : 'Promote';
     el('promoteBtn').disabled = !card.selected_seed;
+    el('unpromoteBtn').disabled = !card.promoted;
     renderCardList();
     renderVariants();
     renderPreview().catch(e => setStatus("Render failed: " + e.message));
@@ -503,6 +505,26 @@ async function promoteCard() {
   }
 }
 
+async function unpromoteCard() {
+  const card = getActiveCard();
+  if (!card || !card.promoted) return;
+
+  setStatus('Removing promoted Godot assets…');
+  try {
+    const updatedDoc = await apiPost('/api/unpromote', { card_id: card.id });
+    state.cardsDoc = updatedDoc;
+    renderCardList();
+    bindEditor(getActiveCard());
+    renderVariants();
+    await renderPreview().catch(e => setStatus('Render failed: ' + e.message));
+    setStatus('Unpromoted.');
+    setTimeout(() => setStatus(''), 1500);
+  } catch (e) {
+    setStatus(`Unpromote failed: ${e.message}`);
+  }
+}
+
+
 async function importArt() {
   const card = getActiveCard();
   if (!card) return;
@@ -609,6 +631,7 @@ function init() {
   el('deleteBtn').addEventListener('click', deleteCard);
   el('approveBtn').addEventListener('click', toggleApprove);
   el('promoteBtn').addEventListener('click', promoteCard);
+  el('unpromoteBtn').addEventListener('click', unpromoteCard);
 
   reloadAll().catch(e => setStatus(`Load failed: ${e.message}`));
 }

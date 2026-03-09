@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Card" load_steps=4 format=3]
+
+[ext_resource type="Texture2D" path="res://art/promoted/card_icons/bureaucracy_hold_for_review.png" id="1_icon"]
+[ext_resource type="Script" path="res://custom_resources/card.gd" id="2_script"]
+[ext_resource type="AudioStream" path="res://art/block.ogg" id="3_sound"]
+
+[resource]
+script = ExtResource("2_script")
+id = "bureaucracy_hold_for_review"
+type = 1
+rarity = 0
+target = 1
+cost = 1
+cards_to_draw = 1
+exposed_to_apply = 2
+exhausts = false
+file_to_backlog = true
+icon = ExtResource("1_icon")
+tooltip_text = "[center][b]Hold for Review[/b]\\nApply 2 Exposed. Draw 1. [FILE][/center]"
+sound = ExtResource("3_sound")
