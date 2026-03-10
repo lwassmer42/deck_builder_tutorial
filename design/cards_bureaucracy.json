@@ -3416,6 +3416,450 @@
       "selected_seed": 998849477,
       "approved": false,
       "notes": "Budget corruption batch: object only."
+    },
+    {
+      "id": "bureaucracy_quiet_resignation",
+      "name": "Quiet Resignation",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "cost": 1,
+      "target": "SELF",
+      "rules_text": "Gain 6 Block. Draw 1.",
+      "art_prompt": "exhausted mid-level worker removing an office badge with one hand, slumped posture, empty cubicle, warm late-night desk lamp, drained relief",
+      "color_accent": "mustard yellow",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": true,
+      "variants": [
+        {
+          "seed": 1669438007,
+          "file": "art/generated/card_art/bureaucracy_quiet_resignation/bureaucracy_quiet_resignation_seed1669438007.png",
+          "source": "comfyui",
+          "prompt_id": "5e8412c6-4036-46c6-866f-07ba5cd30bc5",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, mustard yellow accent color used sparingly on small props as a graphic highlight (not as a full background wash), exhausted mid-level worker removing an office badge with one hand, slumped posture, empty cubicle, warm late-night desk lamp, drained relief",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 00:31:52"
+        },
+        {
+          "seed": 1979784018,
+          "file": "art/generated/card_art/bureaucracy_quiet_resignation/bureaucracy_quiet_resignation_seed1979784018.png",
+          "source": "comfyui",
+          "prompt_id": "96e4d0cb-f955-43dd-8551-a12929a2860b",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, mustard yellow accent color used sparingly on small props as a graphic highlight (not as a full background wash), exhausted mid-level worker removing an office badge with one hand, slumped posture, empty cubicle, warm late-night desk lamp, drained relief",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 00:33:18"
+        },
+        {
+          "seed": 85086290,
+          "file": "art/generated/card_art/bureaucracy_quiet_resignation/bureaucracy_quiet_resignation_seed85086290.png",
+          "source": "comfyui",
+          "prompt_id": "37b19e44-34cd-42d5-8ed6-4936ca607c8a",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, mustard yellow accent color used sparingly on small props as a graphic highlight (not as a full background wash), exhausted mid-level worker removing an office badge with one hand, slumped posture, empty cubicle, warm late-night desk lamp, drained relief",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 00:41:54"
+        },
+        {
+          "seed": 483121463,
+          "file": "art/generated/card_art/bureaucracy_quiet_resignation/bureaucracy_quiet_resignation_seed483121463.png",
+          "source": "comfyui",
+          "prompt_id": "36ad94fd-11c2-4268-b26d-c3845558ad07",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, mustard yellow accent color used sparingly on small props as a graphic highlight (not as a full background wash), exhausted mid-level worker removing an office badge with one hand, slumped posture, empty cubicle, warm late-night desk lamp, drained relief",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 00:51:08"
+        }
+      ],
+      "selected_seed": 1669438007,
+      "approved": false,
+      "notes": "Face/hand batch: people-focused."
+    },
+    {
+      "id": "bureaucracy_deskside_accusation",
+      "name": "Deskside Accusation",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "cost": 1,
+      "target": "SINGLE_ENEMY",
+      "rules_text": "Deal 8 damage. Apply 1 Exposed.",
+      "art_prompt": "angry office worker leaning over a desk, finger pointed in accusation, scattered papers, harsh overhead lighting, confrontational tension",
+      "color_accent": "deep red",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": true,
+      "variants": [
+        {
+          "seed": 1124713628,
+          "file": "art/generated/card_art/bureaucracy_deskside_accusation/bureaucracy_deskside_accusation_seed1124713628.png",
+          "source": "comfyui",
+          "prompt_id": "d058db1c-94ec-41da-a1ad-a0fcdf3b74c1",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, deep red accent color used sparingly on small props as a graphic highlight (not as a full background wash), angry office worker leaning over a desk, finger pointed in accusation, scattered papers, harsh overhead lighting, confrontational tension",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 01:02:15"
+        },
+        {
+          "seed": 867611082,
+          "file": "art/generated/card_art/bureaucracy_deskside_accusation/bureaucracy_deskside_accusation_seed867611082.png",
+          "source": "comfyui",
+          "prompt_id": "070ed3e2-45ed-4ea2-be0f-0a4750da5ab1",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, deep red accent color used sparingly on small props as a graphic highlight (not as a full background wash), angry office worker leaning over a desk, finger pointed in accusation, scattered papers, harsh overhead lighting, confrontational tension",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 01:13:32"
+        },
+        {
+          "seed": 873515176,
+          "file": "art/generated/card_art/bureaucracy_deskside_accusation/bureaucracy_deskside_accusation_seed873515176.png",
+          "source": "comfyui",
+          "prompt_id": "d2d2c1e5-82db-436a-ab61-2686151be6cf",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, deep red accent color used sparingly on small props as a graphic highlight (not as a full background wash), angry office worker leaning over a desk, finger pointed in accusation, scattered papers, harsh overhead lighting, confrontational tension",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 01:25:20"
+        },
+        {
+          "seed": 1890431645,
+          "file": "art/generated/card_art/bureaucracy_deskside_accusation/bureaucracy_deskside_accusation_seed1890431645.png",
+          "source": "comfyui",
+          "prompt_id": "f4d01b86-dc1a-4ab4-b5ef-7428924c5add",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, deep red accent color used sparingly on small props as a graphic highlight (not as a full background wash), angry office worker leaning over a desk, finger pointed in accusation, scattered papers, harsh overhead lighting, confrontational tension",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 01:48:08"
+        }
+      ],
+      "selected_seed": 1124713628,
+      "approved": false,
+      "notes": "Face/hand batch: people-focused."
+    },
+    {
+      "id": "bureaucracy_midnight_overtime",
+      "name": "Midnight Overtime",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "cost": 1,
+      "target": "SELF",
+      "rules_text": "Draw 2. File 1 card to Backlog.",
+      "art_prompt": "spent office worker collapsed over a keyboard, one hand hanging loose, single desk lamp, long shadows, late-night desperation",
+      "color_accent": "cold blue",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": true,
+      "variants": [
+        {
+          "seed": 812687121,
+          "file": "art/generated/card_art/bureaucracy_midnight_overtime/bureaucracy_midnight_overtime_seed812687121.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 01:36:37"
+        },
+        {
+          "seed": 10659523,
+          "file": "art/generated/card_art/bureaucracy_midnight_overtime/bureaucracy_midnight_overtime_seed10659523.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 01:59:51"
+        },
+        {
+          "seed": 1392340727,
+          "file": "art/generated/card_art/bureaucracy_midnight_overtime/bureaucracy_midnight_overtime_seed1392340727.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 02:22:53"
+        }
+      ],
+      "selected_seed": 1392340727,
+      "approved": false,
+      "notes": "Face/hand batch: people-focused."
+    },
+    {
+      "id": "bureaucracy_false_reassurance",
+      "name": "False Reassurance",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "cost": 0,
+      "target": "SELF",
+      "rules_text": "Gain 1 Budget. Draw 1.",
+      "art_prompt": "smug senior manager offering an open palm and a rehearsed smile, filing cabinet behind, cold fluorescent light, quiet menace",
+      "color_accent": "burnt orange",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": true,
+      "variants": [
+        {
+          "seed": 808349048,
+          "file": "art/generated/card_art/bureaucracy_false_reassurance/bureaucracy_false_reassurance_seed808349048.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 02:11:38"
+        },
+        {
+          "seed": 1288294055,
+          "file": "art/generated/card_art/bureaucracy_false_reassurance/bureaucracy_false_reassurance_seed1288294055.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 02:34:48"
+        }
+      ],
+      "selected_seed": 1288294055,
+      "approved": false,
+      "notes": "Face/hand batch: people-focused."
+    },
+    {
+      "id": "bureaucracy_hallway_panic",
+      "name": "Hallway Panic",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "cost": 1,
+      "target": "SELF",
+      "rules_text": "Deal 5 damage. Gain 5 Block.",
+      "art_prompt": "desperate intern clutching a stack of folders to the chest, looking over one shoulder, blank corridor, stark exit light, anxious urgency",
+      "color_accent": "warning yellow",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": true,
+      "variants": [
+        {
+          "seed": 587791691,
+          "file": "art/generated/card_art/bureaucracy_hallway_panic/bureaucracy_hallway_panic_seed587791691.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 02:46:11"
+        }
+      ],
+      "selected_seed": 587791691,
+      "approved": false,
+      "notes": "Face/hand batch: people-focused."
+    },
+    {
+      "id": "bureaucracy_collapsed_in_tray",
+      "name": "Collapsed In-Tray",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "cost": 1,
+      "target": "SELF",
+      "rules_text": "Put 1 discarded card into Backlog. Draw 1.",
+      "art_prompt": "towering in-tray buckling under paper weight, object only, isolated on plain background, harsh top light, unstable pressure",
+      "color_accent": "dull red",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": false,
+      "variants": [
+        {
+          "seed": 1360917881,
+          "file": "art/generated/card_art/bureaucracy_collapsed_in_tray/bureaucracy_collapsed_in_tray_seed1360917881.png",
+          "source": "comfyui",
+          "prompt_id": "45644942-1057-4e78-b058-924bed21fdf1",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, dull red accent color used sparingly on small props as a graphic highlight (not as a full background wash), towering in-tray buckling under paper weight, object only, isolated on plain background, harsh top light, unstable pressure",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts, people, person, human, face, faces, crowd, full body, portrait",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 02:55:55"
+        },
+        {
+          "seed": 1012588744,
+          "file": "art/generated/card_art/bureaucracy_collapsed_in_tray/bureaucracy_collapsed_in_tray_seed1012588744.png",
+          "source": "comfyui",
+          "prompt_id": "f94a0c0c-54ac-4a1b-8e97-3ece352e4528",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, dull red accent color used sparingly on small props as a graphic highlight (not as a full background wash), towering in-tray buckling under paper weight, object only, isolated on plain background, harsh top light, unstable pressure",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts, people, person, human, face, faces, crowd, full body, portrait",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 02:57:25"
+        },
+        {
+          "seed": 1122136533,
+          "file": "art/generated/card_art/bureaucracy_collapsed_in_tray/bureaucracy_collapsed_in_tray_seed1122136533.png",
+          "source": "comfyui",
+          "prompt_id": "6edfe529-5b47-4620-932f-fcdbefb8bd77",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, dull red accent color used sparingly on small props as a graphic highlight (not as a full background wash), towering in-tray buckling under paper weight, object only, isolated on plain background, harsh top light, unstable pressure",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts, people, person, human, face, faces, crowd, full body, portrait",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 02:58:48"
+        },
+        {
+          "seed": 229821183,
+          "file": "art/generated/card_art/bureaucracy_collapsed_in_tray/bureaucracy_collapsed_in_tray_seed229821183.png",
+          "source": "comfyui",
+          "prompt_id": "98d4f254-ba4a-4765-ae7b-835e115f3a50",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, dull red accent color used sparingly on small props as a graphic highlight (not as a full background wash), towering in-tray buckling under paper weight, object only, isolated on plain background, harsh top light, unstable pressure",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts, people, person, human, face, faces, crowd, full body, portrait",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 03:00:02"
+        }
+      ],
+      "selected_seed": 1360917881,
+      "approved": false,
+      "notes": "Object-only batch: isolated plain background."
+    },
+    {
+      "id": "bureaucracy_sealed_red_folder",
+      "name": "Sealed Red Folder",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "cost": 0,
+      "target": "SELF",
+      "rules_text": "Gain 1 Budget.",
+      "art_prompt": "sealed red folder tied with string, object only, isolated on plain background, dramatic spotlight, hush-money mood",
+      "color_accent": "deep red",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": false,
+      "variants": [
+        {
+          "seed": 1235127963,
+          "file": "art/generated/card_art/bureaucracy_sealed_red_folder/bureaucracy_sealed_red_folder_seed1235127963.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 03:09:39"
+        },
+        {
+          "seed": 323622167,
+          "file": "art/generated/card_art/bureaucracy_sealed_red_folder/bureaucracy_sealed_red_folder_seed323622167.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 03:19:28"
+        },
+        {
+          "seed": 518454535,
+          "file": "art/generated/card_art/bureaucracy_sealed_red_folder/bureaucracy_sealed_red_folder_seed518454535.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 03:29:33"
+        },
+        {
+          "seed": 1455613404,
+          "file": "art/generated/card_art/bureaucracy_sealed_red_folder/bureaucracy_sealed_red_folder_seed1455613404.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 03:39:40"
+        }
+      ],
+      "selected_seed": 1455613404,
+      "approved": false,
+      "notes": "Object-only batch: isolated plain background."
+    },
+    {
+      "id": "bureaucracy_overflow_stamp_pad",
+      "name": "Overflow Stamp Pad",
+      "type": "SKILL",
+      "rarity": "COMMON",
+      "cost": 1,
+      "target": "ALL_ENEMIES",
+      "rules_text": "Apply 2 Exposed to ALL enemies.",
+      "art_prompt": "rubber stamp and cracked ink pad exploding flecks of ink, object only, isolated on plain background, cold spotlight, violent energy",
+      "color_accent": "ink black",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": false,
+      "variants": [
+        {
+          "seed": 563998767,
+          "file": "art/generated/card_art/bureaucracy_overflow_stamp_pad/bureaucracy_overflow_stamp_pad_seed563998767.png",
+          "source": "comfyui",
+          "prompt_id": "825db9a0-30a8-40b4-953b-53a8c542ccc4",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, ink black accent color used sparingly on small props as a graphic highlight (not as a full background wash), rubber stamp and cracked ink pad exploding flecks of ink, object only, isolated on plain background, cold spotlight, violent energy",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts, people, person, human, face, faces, crowd, full body, portrait",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 03:50:23"
+        },
+        {
+          "seed": 779126955,
+          "file": "art/generated/card_art/bureaucracy_overflow_stamp_pad/bureaucracy_overflow_stamp_pad_seed779126955.png",
+          "source": "comfyui",
+          "prompt_id": "63453e60-2875-4e90-98cb-07f340d12907",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, ink black accent color used sparingly on small props as a graphic highlight (not as a full background wash), rubber stamp and cracked ink pad exploding flecks of ink, object only, isolated on plain background, cold spotlight, violent energy",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts, people, person, human, face, faces, crowd, full body, portrait",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 04:00:45"
+        },
+        {
+          "seed": 1272340115,
+          "file": "art/generated/card_art/bureaucracy_overflow_stamp_pad/bureaucracy_overflow_stamp_pad_seed1272340115.png",
+          "source": "comfyui",
+          "prompt_id": "b249cdaa-e684-49f6-b7bb-080202c2e52e",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, ink black accent color used sparingly on small props as a graphic highlight (not as a full background wash), rubber stamp and cracked ink pad exploding flecks of ink, object only, isolated on plain background, cold spotlight, violent energy",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts, people, person, human, face, faces, crowd, full body, portrait",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 04:23:31"
+        },
+        {
+          "seed": 645441659,
+          "file": "art/generated/card_art/bureaucracy_overflow_stamp_pad/bureaucracy_overflow_stamp_pad_seed645441659.png",
+          "source": "comfyui",
+          "prompt_id": "0439f93c-caa9-43ea-965b-f365939a8e12",
+          "positive_prompt": "graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art, ink black accent color used sparingly on small props as a graphic highlight (not as a full background wash), rubber stamp and cracked ink pad exploding flecks of ink, object only, isolated on plain background, cold spotlight, violent energy",
+          "negative_prompt": "photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified, text, watermark, logo, signature, speech bubble, speech bubbles, word balloon, dialogue balloon, caption box, blurry, low quality, jpeg artifacts, people, person, human, face, faces, crowd, full body, portrait",
+          "width": 1024,
+          "height": 688,
+          "generated_at": "2026-03-10 04:45:02"
+        }
+      ],
+      "selected_seed": 563998767,
+      "approved": false,
+      "notes": "Object-only batch: isolated plain background."
+    },
+    {
+      "id": "bureaucracy_cracked_desk_phone",
+      "name": "Cracked Desk Phone",
+      "type": "ATTACK",
+      "rarity": "COMMON",
+      "cost": 1,
+      "target": "SINGLE_ENEMY",
+      "rules_text": "Deal 9 damage.",
+      "art_prompt": "desk phone dangling off the hook, object only, isolated on plain background, single harsh light, panic after hours",
+      "color_accent": "sickly green",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": false,
+      "variants": [
+        {
+          "seed": 349177337,
+          "file": "art/generated/card_art/bureaucracy_cracked_desk_phone/bureaucracy_cracked_desk_phone_seed349177337.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 04:12:24"
+        },
+        {
+          "seed": 208826803,
+          "file": "art/generated/card_art/bureaucracy_cracked_desk_phone/bureaucracy_cracked_desk_phone_seed208826803.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 04:34:13"
+        }
+      ],
+      "selected_seed": 208826803,
+      "approved": false,
+      "notes": "Object-only batch: isolated plain background."
+    },
+    {
+      "id": "bureaucracy_vacancy_nameplate",
+      "name": "Vacancy Nameplate",
+      "type": "SKILL",
+      "rarity": "UNCOMMON",
+      "cost": 1,
+      "target": "SELF",
+      "rules_text": "Exhaust. Gain 2 Budget.",
+      "art_prompt": "brass nameplate snapped in half beside office keys, object only, isolated on plain background, dramatic spotlight, fallen authority",
+      "color_accent": "tarnished gold",
+      "use_house_style": true,
+      "negative_prompt": null,
+      "contains_people": false,
+      "variants": [
+        {
+          "seed": 1593273012,
+          "file": "art/generated/card_art/bureaucracy_vacancy_nameplate/bureaucracy_vacancy_nameplate_seed1593273012.png",
+          "source": "comfyui",
+          "generated_at": "2026-03-10 04:56:00"
+        }
+      ],
+      "selected_seed": 1593273012,
+      "approved": false,
+      "notes": "Object-only batch: isolated plain background."
     }
   ],
   "art_width_default": 1024,
