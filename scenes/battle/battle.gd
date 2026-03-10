@@ -24,7 +24,9 @@ func _ready() -> void:
 func start_battle() -> void:
 	get_tree().paused = false
 	MusicPlayer.play(music, true)
-	ChainTracker.reset()
+	var chain_tracker = _get_chain_tracker()
+	if chain_tracker != null and chain_tracker.has_method("reset"):
+		chain_tracker.reset()
 	
 	battle_ui.char_stats = char_stats
 	player.stats = char_stats
@@ -58,3 +60,7 @@ func _on_relics_activated(type: Relic.Type) -> void:
 			battle_ui.initialize_card_pile_ui()
 		Relic.Type.END_OF_COMBAT:
 			Events.battle_over_screen_requested.emit("Victorious!", BattleOverPanel.Type.WIN)
+
+func _get_chain_tracker():
+	return get_tree().root.get_node_or_null("ChainTracker")
+

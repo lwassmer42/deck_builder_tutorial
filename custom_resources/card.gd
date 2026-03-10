@@ -103,7 +103,8 @@ func play(targets: Array[Node], char_stats: CharacterStats, modifiers: ModifierH
 		run_stats.spend_budget(budget_cost)
 
 	var resolved_targets := targets if is_single_targeted() else _get_targets(targets)
-	var chain_bonus_active := ChainTracker.register_play(self)
+	var chain_tracker = _get_chain_tracker()
+	var chain_bonus_active: bool = chain_tracker != null and chain_tracker.has_method("register_play") and chain_tracker.register_play(self)
 	apply_effects(resolved_targets, modifiers)
 	if chain_bonus_active:
 		_apply_chain_bonus_effects(resolved_targets, modifiers)
@@ -147,6 +148,14 @@ func _apply_effect_bundle(targets: Array[Node], modifiers: ModifierHandler, dama
 		exposed.duration = exposed_value
 		status_effect.status = exposed
 		status_effect.execute(targets)
+
+
+func _get_chain_tracker():
+	var tree := Engine.get_main_loop() as SceneTree
+	if tree == null:
+		return null
+
+	return tree.root.get_node_or_null("ChainTracker")
 
 
 func _draw_cards_from_backlog(amount: int) -> void:
