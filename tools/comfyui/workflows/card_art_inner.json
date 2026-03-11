@@ -41,7 +41,7 @@
         "steps": 8,
         "cfg": 2.0,
         "sampler_name": "euler",
-        "scheduler": "ddim_uniform",
+        "scheduler": "sgm_uniform",
         "denoise": 1,
         "model": [
           "4",

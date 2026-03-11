@@ -271,3 +271,109 @@ For future sessions, open the repo root directly at:
 - `C:\Users\Lucas\Godot\Deck_Builder_Tutorial`
 
 The repo was flattened, so this top-level folder is now the actual git root.
+## Third mechanic progress: Backlog
+
+Implemented a first-pass `Backlog` system based directly on `GAMEPLAY_MECHANICS.md`.
+
+What landed on the backlog branch:
+- `custom_resources/character_stats.gd`
+  - added persistent `backlog: CardPile`
+  - runtime pile initialization helper so old saves / old resources do not crash
+- `custom_resources/card.gd`
+  - added `file_to_backlog`
+  - added `draw_from_backlog`
+  - backlog draws now work as a generic card effect
+- `scenes/player/player_handler.gd`
+  - Backlog persists across battles
+  - added the 3-mana battle action to draw the top hidden backlog card
+  - cards tagged with `file_to_backlog` now go to Backlog instead of discard
+  - added helper to inject a temporary nuisance card into Backlog
+- `scenes/ui/battle_ui.gd`
+  - added a dedicated Backlog battle button with count + 3-mana action text
+- `scenes/battle/battle.tscn`
+  - added the new Backlog action button to the battle HUD
+
+Enemy-side backlog pressure:
+- `common_cards/debuffs/bureaucracy_misfiled_notice.tres`
+  - temporary nuisance card used to dirty the Backlog
+- `enemies/common/bury_in_paperwork_action.gd`
+  - shared enemy action that adds `Misfiled Notice` to the player's Backlog
+- `enemies/crab/crab_enemy_ai.tscn`
+- `enemies/bat/bat_enemy_ai.tscn`
+  - both now have a light chance to use the new paperwork action
+
+Scope note:
+- Backlog contents remain hidden in battle
+- there is currently no dedicated Backlog inspection view, by design
+- the dedicated battle action costs 3 mana, matching the design doc
+- Backlog draw via cards does not cost extra mana beyond the card itself
+
+Generated backlog batch:
+- `Case File`
+- `Paper Trail`
+- `Hold for Review`
+- `Priority Retrieval`
+- `Emergency Escalation`
+
+## Gallery control progress: unpromote
+
+Implemented an `Unpromote` flow in the local gallery so promoted cards can be removed from the Godot reward pool without manual file cleanup.
+
+What landed:
+- `tools/card_gallery/server.py`
+  - added `/api/unpromote`
+  - removes the promoted `.tres` and icon file
+  - clears promote metadata from `design/cards_bureaucracy.json`
+  - promotion now serializes newer gameplay fields like budget/backlog values instead of dropping them
+- `tools/card_gallery/web/index.html`
+- `tools/card_gallery/web/app.js`
+  - added `Unpromote` button and editor-state wiring
+
+Validation note:
+- tested end-to-end by unpromoting and re-promoting `bureaucracy_case_file`
+- confirmed the files disappeared on unpromote and were recreated on re-promote
+
+## Art direction update: new house style
+
+Updated the default bureaucracy generation style.
+
+Files:
+- `design/cards_bureaucracy.json`
+- `design/CARD_PROMPTING_GUIDELINES.md`
+- `tools/comfyui/workflows/card_art_inner.json`
+
+Current defaults:
+- positive: `graphic novel illustration, bold ink outlines, flat colors, limited color palette, high contrast, clean linework, strong silhouette, dramatic lighting, professional comic art`
+- negative: `photorealistic, 3d render, anime, manga, soft gradients, painterly, watercolor, airbrush, neon colors, bright saturated colors, glowing effects, fantasy lighting, blur, bokeh, soft focus, watermark, logo, speech bubbles, text, letters, numbers, extra limbs, deformed hands, extra fingers, bad anatomy, duplicate figures, multiple people unless specified`
+
+Workflow note:
+- the ComfyUI workflow already matched the requested Lightning-style `8 steps / CFG 2.0`
+- scheduler was updated to `sgm_uniform`
+
+Prompting strategy now documented:
+- lead with attitude, pose energy, environment, and lighting
+- do not prompt literal card mechanics
+- keep prompts short and single-subject
+- object-only prompts should be used when `contains_people` is false
+
+## New generated budget batch
+
+Generated and promoted five new budget cards under the updated house style:
+- `Expense Slush Fund`
+- `Procurement Leak`
+- `Budget Freeze`
+- `Golden Parachute`
+- `Black Budget`
+
+## Current recommended test order
+
+Tomorrow's best test order:
+1. Start a debug run on the backlog branch.
+2. Check that the newest promoted reward cards are the backlog batch.
+3. Verify the Backlog button is visible in battle, shows a count, and disables correctly when empty / unaffordable.
+4. Play `Case File`, `Paper Trail`, or `Hold for Review` and confirm they go to Backlog instead of discard.
+5. Use the 3-mana Backlog button and confirm the top hidden card goes into hand.
+6. Test `Priority Retrieval` and `Emergency Escalation` to confirm card-driven backlog draws work.
+7. Watch crab / bat intents over a few fights and confirm they can add `Misfiled Notice` to the Backlog.
+8. Open the gallery and verify `Unpromote` removes a card cleanly from the promoted pool.
+9. After backlog checks, test the new budget batch as the second mechanic bucket.

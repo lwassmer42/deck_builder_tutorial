@@ -6,10 +6,12 @@
 [ext_resource type="Script" path="res://enemies/crab/crab_block_action.gd" id="3_mwt7u"]
 [ext_resource type="Script" path="res://enemies/crab/crab_mega_block_action.gd" id="4_5v028"]
 [ext_resource type="Script" path="res://custom_resources/intent.gd" id="4_vcx3h"]
+[ext_resource type="Script" path="res://enemies/common/bury_in_paperwork_action.gd" id="4_backlog"]
 [ext_resource type="AudioStream" uid="uid://de2ryat1pxq6" path="res://art/enemy_attack.ogg" id="5_fbtni"]
 [ext_resource type="Texture2D" uid="uid://bi6pfjs32f820" path="res://art/tile_0101.png" id="6_1jsuk"]
 [ext_resource type="AudioStream" uid="uid://k8m4o3hlwm7l" path="res://art/enemy_block.ogg" id="8_jkno0"]
 [ext_resource type="Texture2D" uid="uid://oe7v35ii8vrs" path="res://art/tile_0102.png" id="8_xt5n4"]
+[ext_resource type="Texture2D" uid="uid://c7c8cgkuro8b3" path="res://art/discard.png" id="9_backlog_icon"]
 
 [sub_resource type="Resource" id="Resource_t5j5y"]
 script = ExtResource("4_vcx3h")
@@ -25,6 +27,11 @@ icon = ExtResource("6_1jsuk")
 script = ExtResource("4_vcx3h")
 base_text = "15"
 icon = ExtResource("8_xt5n4")
+
+[sub_resource type="Resource" id="Resource_backlog"]
+script = ExtResource("4_vcx3h")
+base_text = "%s"
+icon = ExtResource("9_backlog_icon")
 
 [node name="CrabEnemyAI" type="Node"]
 script = ExtResource("1_pubwu")
@@ -47,3 +54,11 @@ chance_weight = 1.0
 script = ExtResource("4_5v028")
 intent = SubResource("Resource_fvhin")
 sound = ExtResource("8_jkno0")
+
+[node name="BuryInPaperworkAction" type="Node" parent="."]
+script = ExtResource("4_backlog")
+intent = SubResource("Resource_backlog")
+sound = ExtResource("8_jkno0")
+type = 1
+chance_weight = 0.65
+notices_to_add = 1
