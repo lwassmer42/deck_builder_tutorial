@@ -14,12 +14,6 @@ const CARD_TEXT := "Add New Card"
 
 @onready var rewards: VBoxContainer = %Rewards
 
-var card_reward_total_weight := 0.0
-var card_rarity_weights := {
-	Card.Rarity.COMMON: 0.0,
-	Card.Rarity.UNCOMMON: 0.0,
-	Card.Rarity.RARE: 0.0
-}
 
 
 func _ready() -> void:
@@ -62,57 +56,20 @@ func _show_card_rewards() -> void:
 	add_child(card_rewards)
 	card_rewards.card_reward_selected.connect(_on_card_reward_taken)
 	
+	var available_cards: Array[Card] = PromotedCards.load_all_duplicates()
+	if available_cards.is_empty():
+		card_rewards.queue_free()
+		return
+
 	var card_reward_array: Array[Card] = []
-	var available_cards: Array[Card] = character_stats.draftable_cards.duplicate_cards()
-	var promoted_cards: Array[Card] = PromotedCards.load_all_duplicates()
-	available_cards.append_array(promoted_cards)
-
-	# Dev convenience: in debug builds, front-load up to five of the newest promoted cards.
-	if OS.has_feature("debug") and not promoted_cards.is_empty():
-		var promo_limit := mini(promoted_cards.size(), maxi(run_stats.card_rewards, 5))
-		for pc: Card in promoted_cards:
-			if card_reward_array.size() >= promo_limit:
-				break
-			card_reward_array.append(pc)
-			available_cards = available_cards.filter(func(c: Card) -> bool: return c.id != pc.id)
-
-	for i in range(run_stats.card_rewards - card_reward_array.size()):
-		_setup_card_chances()
-		var roll := RNG.instance.randf_range(0.0, card_reward_total_weight)
-		
-		for rarity: Card.Rarity in card_rarity_weights:
-			if card_rarity_weights[rarity] > roll:
-				_modify_weights(rarity)
-				var picked_card := _get_random_available_card(available_cards, rarity)
-				card_reward_array.append(picked_card)
-				available_cards.erase(picked_card)
-				break
+	var reward_count: int = mini(run_stats.card_rewards, available_cards.size())
+	for _i in range(reward_count):
+		var picked_card: Card = RNG.array_pick_random(available_cards)
+		card_reward_array.append(picked_card)
+		available_cards.erase(picked_card)
 
 	card_rewards.rewards = card_reward_array
 	card_rewards.show()
-
-
-func _setup_card_chances() -> void:
-	card_reward_total_weight = run_stats.common_weight + run_stats.uncommon_weight + run_stats.rare_weight
-	card_rarity_weights[Card.Rarity.COMMON] = run_stats.common_weight
-	card_rarity_weights[Card.Rarity.UNCOMMON] = run_stats.common_weight + run_stats.uncommon_weight
-	card_rarity_weights[Card.Rarity.RARE] = card_reward_total_weight
-
-
-func _modify_weights(rarity_rolled: Card.Rarity) -> void:
-	if rarity_rolled == Card.Rarity.RARE:
-		run_stats.rare_weight = RunStats.BASE_RARE_WEIGHT
-	else:
-		run_stats.rare_weight = clampf(run_stats.rare_weight + 0.3, run_stats.BASE_RARE_WEIGHT, 5.0)
-
-
-func _get_random_available_card(available_cards: Array[Card], with_rarity: Card.Rarity) -> Card:
-	var all_possible_cards := available_cards.filter(
-		func(card: Card):
-			return card.rarity == with_rarity
-	)
-	return RNG.array_pick_random(all_possible_cards)
-
 
 func _on_gold_reward_taken(amount: int) -> void:
 	if not run_stats:
@@ -137,7 +94,4 @@ func _on_relic_reward_taken(relic: Relic) -> void:
 
 func _on_back_button_pressed() -> void: 
 	Events.battle_reward_exited.emit()
-
-
-
 
