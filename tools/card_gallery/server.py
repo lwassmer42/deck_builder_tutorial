@@ -74,6 +74,24 @@ def _infer_exhausts_from_rules(rules_text: str) -> bool:
     return bool(re.search(r"(?:^|\W)Exhaust(?:\W|$)", rules_text, flags=re.IGNORECASE))
 
 
+def _infer_approval_gain_from_rules(rules_text: str) -> int | None:
+    match = re.search(r"(?:^|\W)Gain\s+(\d+)\s+Approval(?:\W|$)", rules_text, flags=re.IGNORECASE)
+    if match is None:
+        return None
+    return int(match.group(1))
+
+
+def _infer_approval_bonus_from_rules(rules_text: str) -> int | None:
+    match = re.search(
+        r"(?:^|\W)(?:Approval bonus|If stamped, gain|If approved, gain)\s+(\d+)(?:\W|$)",
+        rules_text,
+        flags=re.IGNORECASE,
+    )
+    if match is None:
+        return None
+    return int(match.group(1))
+
+
 def _normalize_promoted_card_fields(card: dict[str, Any]) -> None:
     rules = str(card.get("rules_text") or "")
 
@@ -84,6 +102,16 @@ def _normalize_promoted_card_fields(card: dict[str, Any]) -> None:
 
     if card.get("exhausts") is None and _infer_exhausts_from_rules(rules):
         card["exhausts"] = True
+
+    if card.get("approval_gain") is None:
+        inferred_approval_gain = _infer_approval_gain_from_rules(rules)
+        if inferred_approval_gain is not None:
+            card["approval_gain"] = inferred_approval_gain
+
+    if card.get("approval_bonus_damage") is None:
+        inferred_approval_bonus = _infer_approval_bonus_from_rules(rules)
+        if inferred_approval_bonus is not None:
+            card["approval_bonus_damage"] = inferred_approval_bonus
 
 
 def _safe_path_from_url(url_path: str) -> Path | None:
@@ -239,6 +267,25 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/api/upload_art":
             try:
                 updated = self._upload_art()
+            except ValueError as e:
+                return self._send_json(HTTPStatus.BAD_REQUEST, {"error": str(e)})
+            except Exception as e:  # noqa: BLE001
+                return self._send_json(HTTPStatus.INTERNAL_SERVER_ERROR, {"error": f"Unexpected error: {e}"})
+
+            return self._send_json(HTTPStatus.OK, updated)
+
+        if self.path == "/api/delete_card":
+            try:
+                body = self._read_json_body()
+            except ValueError as e:
+                return self._send_json(HTTPStatus.BAD_REQUEST, {"error": str(e)})
+
+            card_id = body.get("card_id")
+            if not isinstance(card_id, str) or not card_id:
+                return self._send_json(HTTPStatus.BAD_REQUEST, {"error": "card_id is required"})
+
+            try:
+                updated = self._delete_card(card_id=card_id)
             except ValueError as e:
                 return self._send_json(HTTPStatus.BAD_REQUEST, {"error": str(e)})
             except Exception as e:  # noqa: BLE001
@@ -455,7 +502,7 @@ class Handler(BaseHTTPRequestHandler):
 
         color_suffix = cards_doc.get("color_accent_suffix_default")
         if not isinstance(color_suffix, str) or not color_suffix.strip():
-            color_suffix = "used sparingly as a graphic highlight against neutral tones"
+            color_suffix = "accent color focus"
 
         color_accent = card.get("color_accent")
         if not isinstance(color_accent, str):
@@ -464,9 +511,9 @@ class Handler(BaseHTTPRequestHandler):
         positive_parts: list[str] = []
         if use_house_style and house_pos.strip():
             positive_parts.append(house_pos.strip())
-        if use_house_style and color_accent.strip():
-            positive_parts.append(f"{color_accent.strip()} accent color {color_suffix.strip()}")
         positive_parts.append(prompt.strip())
+        if use_house_style and color_accent.strip():
+            positive_parts.append(f"{color_accent.strip()}, {color_suffix.strip()}")
         positive_prompt = ", ".join([p.strip().strip(",") for p in positive_parts if p and p.strip()])
 
         negative_parts: list[str] = []
@@ -514,6 +561,7 @@ class Handler(BaseHTTPRequestHandler):
             card["contains_people"] = contains_people
 
         if contains_people is False:
+            positive_prompt = ", ".join([positive_prompt, "object only, isolated on plain background"])
             no_people_suffix = cards_doc.get("no_people_negative_suffix_default")
             if isinstance(no_people_suffix, str) and no_people_suffix.strip():
                 negative_prompt = ", ".join([p.strip().strip(",") for p in [negative_prompt, no_people_suffix] if isinstance(p, str) and p.strip()]) or None
@@ -705,6 +753,11 @@ class Handler(BaseHTTPRequestHandler):
                 "budget_cost": as_int(card.get("budget_cost"), 0),
                 "budget_gain": as_int(card.get("budget_gain"), 0),
                 "draw_from_backlog": as_int(card.get("draw_from_backlog"), 0),
+                "approval_gain": as_int(card.get("approval_gain"), 0),
+                "approval_bonus_damage": as_int(card.get("approval_bonus_damage"), 0),
+                "approval_bonus_block": as_int(card.get("approval_bonus_block"), 0),
+                "approval_bonus_cards_to_draw": as_int(card.get("approval_bonus_cards_to_draw"), 0),
+                "approval_bonus_exposed_to_apply": as_int(card.get("approval_bonus_exposed_to_apply"), 0),
                 "chain_bonus_damage": as_int(card.get("chain_bonus_damage"), 0),
                 "chain_bonus_block": as_int(card.get("chain_bonus_block"), 0),
                 "chain_bonus_cards_to_draw": as_int(card.get("chain_bonus_cards_to_draw"), 0),
@@ -786,6 +839,38 @@ class Handler(BaseHTTPRequestHandler):
             for key in ("godot_card_path", "godot_icon_path", "promoted_seed", "promoted_at"):
                 card.pop(key, None)
 
+            _backup_cards()
+            _json_write(CARDS_PATH, cards_doc)
+
+        return cards_doc
+
+    def _delete_card(self, *, card_id: str) -> dict[str, Any]:
+        with _write_lock:
+            cards_doc = _json_read(CARDS_PATH)
+
+            cards = cards_doc.get("cards")
+            if not isinstance(cards, list):
+                raise ValueError("design/cards_bureaucracy.json missing cards[]")
+
+            card_index = next((i for i, c in enumerate(cards) if isinstance(c, dict) and c.get("id") == card_id), None)
+            if card_index is None:
+                raise ValueError(f"Card not found: {card_id}")
+
+            card = cards[card_index]
+            if isinstance(card, dict) and card.get("promoted"):
+                for key in ("godot_card_path", "godot_icon_path"):
+                    rel_path = card.get(key)
+                    if not isinstance(rel_path, str) or not rel_path:
+                        continue
+                    abs_path = (REPO_ROOT / rel_path).resolve()
+                    try:
+                        abs_path.relative_to(REPO_ROOT)
+                    except Exception:
+                        continue
+                    if abs_path.exists():
+                        abs_path.unlink()
+
+            cards.pop(card_index)
             _backup_cards()
             _json_write(CARDS_PATH, cards_doc)
 
