@@ -134,12 +134,65 @@ function sortTimestampDesc(a, b) {
   return right - left;
 }
 
+function normalizeFilterText(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
+}
+
+function getMechanicKeywordText(card) {
+  const ints = [
+    'damage',
+    'block',
+    'cards_to_draw',
+    'exposed_to_apply',
+    'budget_gain',
+    'budget_cost',
+    'budget_threshold',
+    'chain_count',
+    'chain_bonus_damage',
+    'chain_bonus_block',
+    'chain_bonus_cards_to_draw',
+    'chain_bonus_exposed_to_apply',
+    'backlog_draw_count',
+  ];
+  const keys = [];
+
+  for (const field of ints) {
+    if (Number(card?.[field] || 0) !== 0) keys.push(field);
+  }
+  if (card?.file_to_backlog) keys.push('file', 'backlog');
+  if (card?.exhaust) keys.push('exhaust');
+
+  return keys.join(' ');
+}
+
 function getVisibleCards() {
-  const query = state.cardFilter.trim().toLowerCase();
+  const queryRaw = state.cardFilter.trim().toLowerCase();
+  const queryNormalized = normalizeFilterText(state.cardFilter);
+  const terms = queryNormalized ? queryNormalized.split(/\s+/).filter(Boolean) : [];
+
   const cards = [...(state.cardsDoc?.cards || [])].filter(card => {
-    if (!query) return true;
-    const haystack = `${card.name || ''} ${card.id || ''}`.toLowerCase();
-    return haystack.includes(query);
+    if (!queryRaw) return true;
+
+    const searchableRaw = [
+      card.name || '',
+      card.id || '',
+      card.rules_text || '',
+      card.notes || '',
+      card.type || '',
+      card.target || '',
+      card.rarity || '',
+      getMechanicKeywordText(card),
+    ].join(' ').toLowerCase();
+
+    const searchableNormalized = normalizeFilterText(searchableRaw);
+    if (!terms.length) {
+      return searchableRaw.includes(queryRaw) || searchableNormalized.includes(queryNormalized);
+    }
+
+    return terms.every(term => searchableRaw.includes(term) || searchableNormalized.includes(term));
   });
 
   cards.sort((a, b) => {
